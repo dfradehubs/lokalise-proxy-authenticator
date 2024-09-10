@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "lokalise-proxy-authenticator.fullname" . }}
+  labels:
+    {{- include "lokalise-proxy-authenticator.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "lokalise-proxy-authenticator.selectorLabels" . | nindent 4 }}
