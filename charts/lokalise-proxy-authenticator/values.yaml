@@ -15,7 +15,7 @@ env:
     value: "8080"
   - name: LOGIN_POST_PATH
     value: "/login/signin"
-  - name: LOKALISE_API_URL
+  - name: LOKALISE_URL
     value: "https://api.lokalise.com"
 
 resources:
@@ -27,15 +27,13 @@ resources:
     memory: "256Mi"
 
 livenessProbe:
-  httpGet:
-    path: /
+  tcoSocket:
     port: 8080
   initialDelaySeconds: 30
   timeoutSeconds: 5
 
 readinessProbe:
-  httpGet:
-    path: /
+  tcpSocket:
     port: 8080
   initialDelaySeconds: 30
   timeoutSeconds: 5
