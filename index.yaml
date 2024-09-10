@@ -21,6 +21,6 @@ entries:
     - https://github.com/achetronic/lokalise-proxy-authenticator
     type: application
     urls:
-    - https://dfradehubs.github.io/lokalise-proxy-authenticator/charts/lokalise-proxy-authenticator-0.0.1.tgz
+    - https://dfradehubs.github.io/lokalise-proxy-authenticator/lokalise-proxy-authenticator-0.0.1.tgz
     version: 0.0.1
 generated: "2024-09-10T18:30:51.213792869+02:00"
