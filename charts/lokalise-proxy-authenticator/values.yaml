@@ -27,7 +27,7 @@ resources:
     memory: "256Mi"
 
 livenessProbe:
-  tcoSocket:
+  tcpSocket:
     port: 8080
   initialDelaySeconds: 30
   timeoutSeconds: 5
