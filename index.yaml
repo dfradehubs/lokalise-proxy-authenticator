@@ -23,4 +23,27 @@ entries:
     urls:
     - https://dfradehubs.github.io/lokalise-proxy-authenticator/lokalise-proxy-authenticator-0.0.1.tgz
     version: 0.0.1
-generated: "2024-09-10T18:30:51.213792869+02:00"
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-09-10T19:14:30.073339145+02:00"
+    description: A Helm chart for lokalise-proxy-authenticator, a simple proxy used
+      for authenticating requests to Lokalise API using the CSRF token method.
+    digest: ce5b27f5020eff718ff2099883f5f6b3ec09ff898b6cb396365a6d7a795cf69d
+    home: https://github.com/dfradehub/lokalise-proxy-authenticator
+    keywords:
+    - lokalise-proxy-authenticator
+    - kubernetes
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: fradejasdaniel@gmail.com
+      name: Daniel Fradejas
+      url: https://github.com/dfradehubs
+    name: lokalise-proxy-authenticator
+    sources:
+    - https://github.com/achetronic/lokalise-proxy-authenticator
+    type: application
+    urls:
+    - https://dfradehubs.github.io/lokalise-proxy-authenticator/lokalise-proxy-authenticator-0.0.2.tgz
+    version: 0.0.2
+generated: "2024-09-10T19:14:30.072927629+02:00"
+
