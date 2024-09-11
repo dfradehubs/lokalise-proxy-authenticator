@@ -245,8 +245,8 @@ func ProxyHandler(target *url.URL, login_post_path string) http.HandlerFunc {
 				}
 
 				// Copy the Set-Cookie headers to the response
+				w.Header().Del("Set-Cookie")
 				for _, setCookie := range setCookieHeaders {
-					w.Header().Del("Set-Cookie")
 					w.Header().Add("Set-Cookie", setCookie)
 				}
 
