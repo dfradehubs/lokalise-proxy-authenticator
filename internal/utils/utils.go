@@ -202,9 +202,18 @@ func ProxyHandler(target *url.URL, login_post_path string) http.HandlerFunc {
 		// Log the request and response
 		log.Printf("Request: Method=%s, URL=%s, RemoteAddr=%s, RedirectTo=%s, Body=%s, RemoteStatusCode=%d", r.Method, r.URL.String(), r.RemoteAddr, target.ResolveReference(r.URL).String(), r.Body, resp.StatusCode)
 
+		// Copy the response headers
+		for key, values := range resp.Header {
+			for _, value := range values {
+				if key != "Set-Cookie" {
+					w.Header().Add(key, value)
+				}
+			}
+		}
+
 		// If the response status code is a redirect to /login, it means the user is not authenticated
 		if location := resp.Header.Get("Location"); location != "" {
-			if strings.HasPrefix(location, "/login") {
+			if strings.HasPrefix(location, "/login") && !strings.Contains(location, "action=logout") {
 
 				// Check if the request has an Authorization header
 				authHeader := r.Header.Get("Authorization")
@@ -237,22 +246,19 @@ func ProxyHandler(target *url.URL, login_post_path string) http.HandlerFunc {
 
 				// Copy the Set-Cookie headers to the response
 				for _, setCookie := range setCookieHeaders {
+					w.Header().Del("Set-Cookie")
 					w.Header().Add("Set-Cookie", setCookie)
 				}
 
 				// Redirect the request to the original URL
-				w.Header().Del("Location")
-				w.Header().Set("Location", r.URL.String())
-				resp.StatusCode = 307
-			}
-		}
-
-		// Copy the response headers
-		for key, values := range resp.Header {
-			for _, value := range values {
-				if key != "Set-Cookie" && key != "Location" {
-					w.Header().Add(key, value)
+				if location == "/login" {
+					w.Header().Del("Location")
+					w.Header().Set("Location", "/projects")
+				} else {
+					w.Header().Del("Location")
+					w.Header().Set("Location", r.URL.String())
 				}
+				resp.StatusCode = 307
 			}
 		}
 
