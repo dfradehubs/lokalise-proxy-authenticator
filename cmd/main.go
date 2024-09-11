@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"os"
 
-	utils "lokalise-proxy-authenticator/internal"
+	"lokalise-proxy-authenticator/internal/utils"
 )
 
 func main() {
